@@ -1,0 +1,31 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - master
+      
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v3
+      
+      - uses: pnpm/action-setup@v2.0.1
+        with:
+          version: latest
+          
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: pnpm
+          
+      - run: pnpm install --frozen-lockfile
+      
+      - run: pnpm build
+      
+      - uses: crazy-max/ghaction-github-pages@v3.0.0
+        with:
+          target_branch: gh_pages
+          build_dir: build

@@ -10,42 +10,15 @@ import {
   CardMedia,
   Grid,
   IconButton,
-  SvgIcon,
-  Tooltip,
   Typography,
 } from "@mui/material";
 import formatDistanceToNow from "date-fns/formatDistanceToNow";
 import fromUnixTime from "date-fns/fromUnixTime";
 import React from "react";
 import { useParams } from "react-router-dom";
+import StatInfo from "src/routes/Details/components/StatInfo";
 import { fetchWeatherDataByCityId } from "src/routes/Index/weatherThunks";
 import { useAppDispatch, useAppSelector } from "src/store";
-
-type StatInfoProps = {
-  Icon: typeof SvgIcon;
-  title: string;
-  // eslint-disable-next-line react/require-default-props
-  label?: React.ReactNode;
-};
-
-const StatInfo: React.FC<StatInfoProps> = ({ label, title, Icon }) => (
-  <Box
-    sx={{
-      display: "flex",
-      flexDirection: "column",
-      rowGap: 1,
-      justifyContent: "center",
-      alignItems: "center",
-    }}
-  >
-    <Tooltip title={title} placement="top">
-      <div>
-        <Icon sx={{ fontSize: 72, color: "primary.main" }} />
-      </div>
-    </Tooltip>
-    <div>{label}</div>
-  </Box>
-);
 
 const DetailsRoute: React.FC = () => {
   const dispatch = useAppDispatch();

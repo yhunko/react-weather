@@ -1,26 +1,22 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import "@fontsource/roboto/300.css";
+import "@fontsource/roboto/400.css";
+import "@fontsource/roboto/500.css";
+import "@fontsource/roboto/700.css";
+import { CssBaseline } from "@mui/material";
+import React from "react";
+import { Provider } from "react-redux";
+import { HashRouter } from "react-router-dom";
+import Routes from "src/routes";
+import store from "src/store";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App: React.FC = () => (
+  <HashRouter>
+    <Provider store={store}>
+      <CssBaseline />
+
+      <Routes />
+    </Provider>
+  </HashRouter>
+);
 
 export default App;

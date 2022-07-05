@@ -23,9 +23,15 @@ jobs:
           
       - run: pnpm install --frozen-lockfile
       
-      - run: pnpm build
+      - env:
+          REACT_APP_WEATHER_API_BASE_URL: ${{ secrets.REACT_APP_WEATHER_API_BASE_URL }}
+          REACT_APP_WEATHER_API_KEY: ${{ secrets.REACT_APP_WEATHER_API_KEY }}
+          REACT_APP_UNSPLASH_ACCESS_KEY: ${{ secrets.REACT_APP_UNSPLASH_ACCESS_KEY }}
+        run: pnpm build
       
-      - uses: crazy-max/ghaction-github-pages@v3.0.0
+      - env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: crazy-max/ghaction-github-pages@v3.0.0
         with:
           target_branch: gh_pages
           build_dir: build
